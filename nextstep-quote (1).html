@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get a Quote | Next Step Home Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C96A;
+    --gold-dim: #8B7235;
+    --black: #0E0E0E;
+    --charcoal: #1A1A1A;
+    --surface: #242424;
+    --surface-2: #2E2E2E;
+    --border: rgba(201,168,76,0.2);
+    --border-hover: rgba(201,168,76,0.5);
+    --text: #F0EDE6;
+    --text-muted: #8A8478;
+    --text-dim: #5A5650;
+    --success: #4CAF7D;
+    --radius: 12px;
+    --radius-lg: 18px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--black);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(201,168,76,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 90% 90%, rgba(201,168,76,0.04) 0%, transparent 50%);
+  }
+
+  .app {
+    width: 100%;
+    max-width: 560px;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .logo-mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1.25rem;
+  }
+
+  .logo-icon {
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid var(--gold);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-icon svg { width: 18px; height: 18px; }
+
+  .logo-text {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+
+  .logo-text span { color: var(--gold); }
+
+  .header h1 {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .header p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .card {
+    background: var(--charcoal);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    animation: fadeUp 0.6s ease 0.1s both;
+  }
+
+  .progress-bar {
+    height: 3px;
+    background: var(--surface);
+  }
+
+  .progress-fill {
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold-dim), var(--gold));
+    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .step-header {
+    padding: 1.5rem 1.75rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .step-num {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(201,168,76,0.1);
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .step-dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--surface-2);
+    transition: all 0.3s ease;
+  }
+
+  .dot.active { background: var(--gold); transform: scale(1.2); }
+  .dot.done { background: var(--gold-dim); }
+
+  .step-body {
+    padding: 1.5rem 1.75rem 1.75rem;
+  }
+
+  .step-title {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 0.35rem;
+    line-height: 1.3;
+  }
+
+  .step-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+
+  .service-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 1.25rem;
+  }
+
+  .svc-btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 0.875rem;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .svc-btn:hover {
+    border-color: var(--border-hover);
+    background: var(--surface-2);
+    transform: translateY(-1px);
+  }
+
+  .svc-btn.selected {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.08);
+  }
+
+  .svc-icon {
+    width: 32px;
+    height: 32px;
+    background: rgba(201,168,76,0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+
+  .svc-btn.selected .svc-icon { background: rgba(201,168,76,0.2); }
+  .svc-icon svg { width: 16px; height: 16px; stroke: var(--gold); fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+
+  .svc-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .svc-price {
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  .svc-btn.selected .svc-name { color: var(--gold-light); }
+
+  .field-group { margin-bottom: 1rem; }
+
+  .field-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .field-input {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.75rem 1rem;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .field-input:focus { border-color: var(--gold); }
+  .field-input::placeholder { color: var(--text-dim); }
+
+  select.field-input {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%238A8478' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+    cursor: pointer;
+  }
+
+  select.field-input option { background: var(--charcoal); }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  .size-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 1rem;
+  }
+
+  .size-btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.75rem 0.5rem;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s ease;
+  }
+
+  .size-btn:hover { border-color: var(--border-hover); }
+
+  .size-btn.selected {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.08);
+  }
+
+  .size-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    display: block;
+  }
+
+  .size-sub {
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-top: 2px;
+    display: block;
+  }
+
+  .size-btn.selected .size-label { color: var(--gold-light); }
+
+  .addon-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1rem; }
+
+  .addon-btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.875rem 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.2s ease;
+  }
+
+  .addon-btn:hover { border-color: var(--border-hover); }
+
+  .addon-btn.selected {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.06);
+  }
+
+  .addon-left { display: flex; align-items: center; gap: 10px; }
+
+  .check-box {
+    width: 18px;
+    height: 18px;
+    border-radius: 5px;
+    border: 1.5px solid var(--text-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+
+  .addon-btn.selected .check-box {
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+
+  .check-box svg { width: 10px; height: 10px; stroke: var(--black); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; opacity: 0; transition: opacity 0.2s; }
+  .addon-btn.selected .check-box svg { opacity: 1; }
+
+  .addon-name { font-size: 13px; font-weight: 500; color: var(--text); }
+  .addon-desc { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+  .addon-price { font-size: 13px; font-weight: 500; color: var(--gold); }
+
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 1.25rem 0;
+  }
+
+  .estimate-preview {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .est-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+
+  .est-row:last-child { margin-bottom: 0; }
+
+  .est-row.total {
+    border-top: 1px solid var(--border);
+    padding-top: 10px;
+    margin-top: 4px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .est-row.total span:last-child { color: var(--gold); }
+
+  .btn-primary {
+    width: 100%;
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    border-radius: var(--radius);
+    padding: 0.9rem 1.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    letter-spacing: 0.02em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-1px);
+  }
+
+  .btn-primary:active { transform: translateY(0); }
+
+  .btn-primary svg { width: 16px; height: 16px; stroke: var(--black); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  .btn-secondary {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    border-radius: var(--radius);
+    padding: 0.75rem 1.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  .btn-secondary:hover { border-color: var(--border-hover); color: var(--text); }
+
+  .nav-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 1rem;
+  }
+
+  .btn-back {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    border-radius: var(--radius);
+    padding: 0.875rem 1.25rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .btn-back:hover { border-color: var(--border-hover); color: var(--text); }
+  .btn-back svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  .btn-next {
+    flex: 1;
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    border-radius: var(--radius);
+    padding: 0.875rem 1.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .btn-next:hover { background: var(--gold-light); }
+  .btn-next:disabled { background: var(--surface-2); color: var(--text-dim); cursor: not-allowed; }
+  .btn-next svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  .trust-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+
+  .trust-item svg { width: 13px; height: 13px; stroke: var(--gold-dim); fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+
+  .success-wrap {
+    text-align: center;
+    padding: 0.5rem 0;
+  }
+
+  .success-icon {
+    width: 64px;
+    height: 64px;
+    background: rgba(76,175,125,0.1);
+    border: 1px solid rgba(76,175,125,0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.25rem;
+  }
+
+  .success-icon svg { width: 28px; height: 28px; stroke: var(--success); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  .success-title {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .success-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .quote-summary {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+    text-align: left;
+  }
+
+  .qs-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .qs-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+  }
+
+  .qs-row span:last-child { color: var(--text); font-weight: 500; }
+
+  .qs-total {
+    border-top: 1px solid var(--border);
+    padding-top: 10px;
+    margin-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .qs-total span:last-child { color: var(--gold); }
+
+  .what-next {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 1.25rem;
+  }
+
+  .next-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .next-num {
+    width: 20px;
+    height: 20px;
+    background: rgba(201,168,76,0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .error-msg {
+    font-size: 12px;
+    color: #E07070;
+    margin-top: 6px;
+    display: none;
+  }
+
+  .step-slide {
+    animation: slideIn 0.3s ease both;
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(16px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .footer-note {
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 1.25rem;
+    animation: fadeUp 0.6s ease 0.2s both;
+  }
+
+  .footer-note a { color: var(--text-muted); text-decoration: none; }
+  .footer-note a:hover { color: var(--gold); }
+
+  @media (max-width: 480px) {
+    body { padding: 1rem; }
+    .service-grid { grid-template-columns: 1fr 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+    .header h1 { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <div class="header">
+    <div class="logo-mark">
+      <div class="logo-icon">
+        <svg viewBox="0 0 20 20" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 10L10 3l7 7"/>
+          <path d="M5 8v8h10V8"/>
+          <path d="M8 16v-5h4v5"/>
+        </svg>
+      </div>
+      <div class="logo-text">NEXT <span>STEP</span></div>
+    </div>
+    <h1>Get your instant quote</h1>
+    <p>Pittsburgh's white-glove moving & home services team.<br>Insured, professional, 5-star rated.</p>
+  </div>
+
+  <div class="card" id="main-card">
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress" style="width: 25%"></div>
+    </div>
+
+    <div id="step-container"></div>
+  </div>
+
+  <div class="footer-note">
+    Fully insured &amp; licensed &nbsp;·&nbsp; Pittsburgh, PA &nbsp;·&nbsp;
+  <a href="https://nextsteppgh.cc" target="_blank">nextsteppgh.cc</a>
+  </div>
+</div>
+
+<script>
+const state = {
+  step: 1,
+  service: '',
+  homeSize: '',
+  floors: '1',
+  distance: 'local',
+  withTruck: null,
+  handymanService: '',
+  moveDate: '',
+  name: '',
+  phone: '',
+  email: '',
+  neighborhood: '',
+  addons: [],
+  estimate: { low: 0, high: 0, breakdown: [] }
+};
+
+const services = [
+  { id: 'local-move',   name: 'Local move',          price: '2-hr min · from $300',  icon: `<path d="M1 3h13l3 5v5H1V3z"/><circle cx="5.5" cy="14.5" r="1.5"/><circle cx="14.5" cy="14.5" r="1.5"/>` },
+  { id: 'junk-removal', name: 'Junk removal',         price: '2-hr min · from $300',  icon: `<polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/>` },
+  { id: 'furniture',    name: 'Furniture assembly',   price: '1-hr min · from $150',  icon: `<rect x="3" y="10" width="18" height="8" rx="1"/><path d="M5 10V7a2 2 0 014 0v3"/><path d="M11 10V7a2 2 0 014 0v3"/>` },
+  { id: 'handyman',     name: 'Handyman services',    price: '1-hr min · from $150',  icon: `<path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>` }
+];
+
+const handymanServices = [
+  { id: 'fixture-install',   name: 'Fixture install',        sub: 'Chandeliers, fans, lighting',  price: 'From $175' },
+  { id: 'tv-mount',          name: 'TV mounting',            sub: 'Any size, any wall type',       price: 'From $100' },
+  { id: 'appliance',         name: 'Appliance placement',    sub: 'Washer, dryer, fridge',         price: 'From $150' },
+  { id: 'drywall',           name: 'Drywall & patching',     sub: 'Holes, cracks, touch-ups',      price: 'From $100' },
+  { id: 'door-window',       name: 'Door & window repair',   sub: 'Hinges, locks, screens',        price: 'From $100' },
+  { id: 'shelf-install',     name: 'Shelving & storage',     sub: 'Floating shelves, closets',     price: 'From $100' },
+  { id: 'blinds-curtains',   name: 'Blinds & curtain rods',  sub: 'Install or replace',            price: 'From $75'  },
+  { id: 'misc-handyman',     name: 'Other home service',     sub: 'Tell us what you need',         price: 'Custom'    }
+];
+
+const homeSizes = [
+  { id: 'studio', label: 'Studio', sub: '1 room' },
+  { id: '1br', label: '1 BR', sub: 'Apartment' },
+  { id: '2br', label: '2 BR', sub: 'Apartment' },
+  { id: '3br', label: '3 BR', sub: 'Home' },
+  { id: '4br', label: '4 BR', sub: 'Home' },
+  { id: '5br+', label: '5 BR+', sub: 'Large home' }
+];
+
+const addons = [
+  { id: 'packing', name: 'Packing service', desc: 'We pack everything for you', price: '+$120–$200' },
+  { id: 'stairs', name: 'Stair surcharge', desc: '3+ flights at pickup or drop-off', price: '+$50' },
+  { id: 'longcarry', name: 'Long carry', desc: 'Truck can\'t park close to door', price: '+$50' },
+  { id: 'disassembly', name: 'Furniture disassembly', desc: 'Break down & reassemble large pieces', price: '+$75' },
+  { id: 'sameday', name: 'Same-day booking', desc: 'Rush scheduling fee', price: '+$100' }
+];
+
+function calcEstimate() {
+  const svc = state.service;
+  let low = 0, high = 0;
+  const breakdown = [];
+
+  // Labor rates
+  const RATE_2MAN = 150; // per mover/hr — 2-man crew = $300/hr total
+  const RATE_3MAN = 130; // per mover/hr — 3-man crew = $390/hr total
+  const MIN_HRS = 2;
+
+  // Truck fees by crew size & home size
+  // Truck fees by crew/home size
+  // 2-man: cargo van $150
+  // 3-man (2–3BR): 20ft truck $175
+  // 4-man (4BR+): 26ft truck $225
+  const truckFee = (movers, homeSize) => {
+    if (movers === 2) return 150;
+    if (movers === 3) return 175;
+    return 225; // 4-man = 26ft
+  };
+
+  if (svc === 'local-move') {
+    const crewMap = {
+      studio: { movers: 2, hrsLow: 2, hrsHigh: 4 },
+      '1br':  { movers: 2, hrsLow: 2, hrsHigh: 5 },
+      '2br':  { movers: 3, hrsLow: 4, hrsHigh: 6 },
+      '3br':  { movers: 3, hrsLow: 5, hrsHigh: 7 },
+      '4br':  { movers: 4, hrsLow: 6, hrsHigh: 8 },
+      '5br+': { movers: 4, hrsLow: 7, hrsHigh: 8 }
+    };
+    const crew = crewMap[state.homeSize] || crewMap['studio'];
+    const rate = crew.movers === 2 ? RATE_2MAN : RATE_3MAN;
+    const laborHrTotal = crew.movers * rate;
+    const laborMin = laborHrTotal * MIN_HRS;
+    const truck = state.withTruck ? truckFee(crew.movers, state.homeSize) : 0;
+
+    low  = Math.max(laborMin, crew.movers * rate * crew.hrsLow) + truck;
+    high = crew.movers * rate * crew.hrsHigh + truck;
+
+    const truckLabel = crew.movers === 2 ? 'Cargo van' : crew.movers === 3 ? '20ft truck' : '26ft truck';
+
+    breakdown.push({ label: `${crew.movers}-man crew · $${laborHrTotal}/hr · 2-hr min`, val: `$${laborMin} min` });
+    breakdown.push({ label: `${(state.homeSize||'').toUpperCase()} move est. (${crew.hrsLow}–${crew.hrsHigh} hrs)`, val: `$${low - truck}–$${high - truck}` });
+    if (state.withTruck) {
+      breakdown.push({ label: `Truck fee (${truckLabel})`, val: `+$${truck}` });
+    } else {
+      breakdown.push({ label: 'Labor only — no truck', val: 'No truck fee' });
+    }
+    if (state.distance === 'long') {
+      low += 150; high += 300;
+      breakdown.push({ label: 'Distance surcharge', val: '+$150–$300' });
+    }
+
+  } else if (svc === 'junk-removal') {
+    const crewMap = {
+      studio: { hrsLow: 2, hrsHigh: 3 },
+      '1br':  { hrsLow: 2, hrsHigh: 4 },
+      '2br':  { hrsLow: 3, hrsHigh: 5 },
+      '3br':  { hrsLow: 4, hrsHigh: 6 },
+      '4br':  { hrsLow: 5, hrsHigh: 7 },
+      '5br+': { hrsLow: 6, hrsHigh: 8 }
+    };
+    const crew = crewMap[state.homeSize] || crewMap['studio'];
+    const laborHrTotal = 2 * RATE_2MAN; // junk = always 2 men
+    const laborMin = laborHrTotal * MIN_HRS; // $300
+    const truck = state.withTruck ? truckFee(2, state.homeSize) : 0;
+
+    low  = Math.max(laborMin, laborHrTotal * crew.hrsLow) + truck;
+    high = laborHrTotal * crew.hrsHigh + truck;
+
+    breakdown.push({ label: `2-man crew · $${laborHrTotal}/hr · 2-hr min`, val: `$${laborMin} min` });
+    breakdown.push({ label: `Junk removal est. (${crew.hrsLow}–${crew.hrsHigh} hrs)`, val: `$${low - truck}–$${high - truck}` });
+    if (state.withTruck) {
+      breakdown.push({ label: 'Truck fee', val: `+$${truck}` });
+    } else {
+      breakdown.push({ label: 'Labor only — no truck', val: 'No truck fee' });
+    }
+
+  } else if (svc === 'furniture') {
+    // 1-man, $150/hr, 1-hr minimum = $150 floor
+    const RATE_1MAN = 150;
+    const laborMin = RATE_1MAN * 1; // $150 — 1-hr min
+    const truck = state.withTruck ? 150 : 0;
+    low  = laborMin + truck;
+    high = RATE_1MAN * 4 + truck;
+    breakdown.push({ label: '1-man crew · $150/hr · 1-hr minimum', val: `$${laborMin} min` });
+    breakdown.push({ label: 'Assembly est. (1–4 hrs)', val: `$${laborMin}–$${RATE_1MAN * 4}` });
+    if (state.withTruck) breakdown.push({ label: 'Truck fee', val: '+$150' });
+    else breakdown.push({ label: 'Labor only — no truck', val: 'No truck fee' });
+
+  } else if (svc === 'handyman') {
+    // $150/hr, 1-hr minimum. Flat rates for specific jobs.
+    const flatRates = {
+      'fixture-install': [175, 400],
+      'tv-mount':        [100, 200],
+      'appliance':       [150, 250],
+      'drywall':         [100, 300],
+      'door-window':     [100, 250],
+      'shelf-install':   [100, 200],
+      'blinds-curtains': [75,  175],
+      'misc-handyman':   [150, 400]
+    };
+    const hsvc = state.handymanService;
+    const range = flatRates[hsvc] || [150, 400];
+    low = range[0]; high = range[1];
+    const hsvcName = handymanServices.find(h => h.id === hsvc)?.name || 'Handyman service';
+    breakdown.push({ label: hsvcName, val: `$${low}–$${high}` });
+    breakdown.push({ label: '$150/hr · 1-hr minimum', val: '$150 min' });
+  }
+
+  state.addons.forEach(a => {
+    const addon = addons.find(x => x.id === a);
+    if (!addon) return;
+    if (a === 'packing') { low += 120; high += 200; }
+    else if (a === 'stairs') { low += 50; high += 50; }
+    else if (a === 'longcarry') { low += 50; high += 50; }
+    else if (a === 'disassembly') { low += 75; high += 75; }
+    else if (a === 'sameday') { low += 100; high += 100; }
+    breakdown.push({ label: addon.name, val: addon.price });
+  });
+
+  state.estimate = { low, high, breakdown };
+}
+
+function toggleAddon(id) {
+  const idx = state.addons.indexOf(id);
+  if (idx > -1) state.addons.splice(idx, 1);
+  else state.addons.push(id);
+  calcEstimate();
+  document.querySelectorAll('.addon-btn').forEach(btn => {
+    const isSelected = state.addons.includes(btn.dataset.id);
+    btn.classList.toggle('selected', isSelected);
+  });
+  renderEstPreview();
+}
+
+function renderEstPreview() {
+  const el = document.getElementById('est-preview');
+  if (!el) return;
+  const { low, high, breakdown } = state.estimate;
+  el.innerHTML = breakdown.filter(b => b.val).map(b =>
+    `<div class="est-row"><span>${b.label}</span><span>${b.val}</span></div>`
+  ).join('') + `<div class="est-row total"><span>Estimated total</span><span>$${low}–$${high}</span></div>`;
+}
+
+function updateProgress() {
+  const pct = [25, 50, 75, 95, 100][state.step - 1] || 25;
+  document.getElementById('progress').style.width = pct + '%';
+  document.querySelectorAll('.dot').forEach((d, i) => {
+    d.classList.toggle('active', i === state.step - 1);
+    d.classList.toggle('done', i < state.step - 1);
+  });
+}
+
+function renderStep() {
+  const c = document.getElementById('step-container');
+  c.innerHTML = '';
+  const wrapper = document.createElement('div');
+  wrapper.className = 'step-slide';
+
+  if (state.step === 1) wrapper.innerHTML = renderStep1();
+  else if (state.step === 2) wrapper.innerHTML = renderStep2();
+  else if (state.step === 3) wrapper.innerHTML = renderStep3();
+  else if (state.step === 4) wrapper.innerHTML = renderStep4();
+  else if (state.step === 5) wrapper.innerHTML = renderStep5();
+
+  c.appendChild(wrapper);
+  updateProgress();
+  bindEvents();
+}
+
+function renderStep1() {
+  return `
+    <div class="step-header">
+      <span class="step-num">Step 1 of 4</span>
+      <div class="step-dots">
+        <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      </div>
+    </div>
+    <div class="step-body">
+      <div class="step-title">What can we help with?</div>
+      <div class="step-sub">Select the service you need and we'll build your quote.</div>
+      <div class="service-grid">
+        ${services.map(s => `
+          <button class="svc-btn ${state.service === s.id ? 'selected' : ''}" data-svc="${s.id}">
+            <div class="svc-icon">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" stroke="#C9A84C" fill="none">${s.icon}</svg>
+            </div>
+            <div class="svc-name">${s.name}</div>
+            <div class="svc-price">${s.price}</div>
+          </button>`).join('')}
+      </div>
+      <button class="btn-next" id="btn-next1" ${!state.service ? 'disabled' : ''} onclick="goNext()">
+        Continue
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+      <div class="trust-row">
+        <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Fully insured</div>
+        <div class="trust-item"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>5-star rated</div>
+        <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.69A2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>Same-day response</div>
+      </div>
+    </div>`;
+}
+
+function renderStep2() {
+  const isMove = state.service === 'local-move' || state.service === 'junk-removal';
+  const isHandyman = state.service === 'handyman';
+  const isFurniture = state.service === 'furniture';
+  const needsTruck = isMove || isFurniture;
+  return `
+    <div class="step-header">
+      <span class="step-num">Step 2 of 4</span>
+      <div class="step-dots">
+        <div class="dot done"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div>
+      </div>
+    </div>
+    <div class="step-body">
+      <div class="step-title">${isMove ? 'Tell us about the job' : isHandyman ? 'What do you need done?' : 'Job details'}</div>
+      <div class="step-sub">${isMove ? 'This helps us calculate an accurate estimate.' : isHandyman ? 'Select the service and we\'ll give you a price range.' : 'A few details so we can price this right.'}</div>
+      ${isMove ? `
+        <div class="field-group">
+          <label class="field-label">Home size</label>
+          <div class="size-grid">
+            ${homeSizes.map(s => `
+              <button class="size-btn ${state.homeSize === s.id ? 'selected' : ''}" data-size="${s.id}">
+                <span class="size-label">${s.label}</span>
+                <span class="size-sub">${s.sub}</span>
+              </button>`).join('')}
+          </div>
+        </div>
+        ${state.service === 'local-move' ? `
+          <div class="field-group">
+            <label class="field-label">Move distance</label>
+            <select class="field-input" id="distance" onchange="state.distance=this.value;calcEstimate()">
+              <option value="local" ${state.distance==='local'?'selected':''}>Local (under 50 miles)</option>
+              <option value="long" ${state.distance==='long'?'selected':''}>Longer distance (50+ miles)</option>
+            </select>
+          </div>` : ''}
+      ` : isHandyman ? `
+        <div class="field-group">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            ${handymanServices.map(h => `
+              <button class="addon-btn ${state.handymanService === h.id ? 'selected' : ''}"
+                onclick="state.handymanService='${h.id}';document.querySelectorAll('.addon-btn').forEach(b=>b.classList.remove('selected'));this.classList.add('selected');calcEstimate();renderEstPreviewInline();"
+                style="justify-content:space-between">
+                <div class="addon-left">
+                  <div class="check-box" style="border-radius:50%">
+                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                  <div>
+                    <div class="addon-name">${h.name}</div>
+                    <div class="addon-desc">${h.sub}</div>
+                  </div>
+                </div>
+                <div class="addon-price">${h.price}</div>
+              </button>`).join('')}
+          </div>
+        </div>
+        <div id="handyman-est" style="margin-top:4px"></div>
+      ` : `
+        <div class="field-group">
+          <label class="field-label">Describe what you need</label>
+          <textarea class="field-input" id="job-desc" rows="3" placeholder="e.g. IKEA bed frame, dresser, bookshelf..." style="resize:none;line-height:1.6">${state.jobDesc||''}</textarea>
+        </div>
+      `}
+      ${needsTruck ? `
+        <div class="field-group">
+          <label class="field-label">Do you need us to bring a truck?</label>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:2px">
+            <button class="size-btn ${state.withTruck===true?'selected':''}" id="truck-yes" onclick="state.withTruck=true;document.getElementById('truck-yes').classList.add('selected');document.getElementById('truck-no').classList.remove('selected');calcEstimate();">
+              <span class="size-label">Yes, bring truck</span>
+              <span class="size-sub">We handle transport</span>
+            </button>
+            <button class="size-btn ${state.withTruck===false?'selected':''}" id="truck-no" onclick="state.withTruck=false;document.getElementById('truck-no').classList.add('selected');document.getElementById('truck-yes').classList.remove('selected');calcEstimate();">
+              <span class="size-label">Labor only</span>
+              <span class="size-sub">You have a truck/POD</span>
+            </button>
+          </div>
+          <div style="font-size:11px;color:var(--text-dim);margin-top:8px;line-height:1.5">Truck fee covers rental cost — gas billed separately at cost.</div>
+        </div>` : ''}
+      <div class="field-group">
+        <label class="field-label">Preferred date</label>
+        <input type="date" class="field-input" id="move-date" value="${state.moveDate}" min="${new Date().toISOString().split('T')[0]}">
+      </div>
+      <div class="field-group">
+        <label class="field-label">Pittsburgh neighborhood</label>
+        <select class="field-input" id="neighborhood">
+          <option value="">Select neighborhood...</option>
+          ${['Squirrel Hill','Shadyside','Fox Chapel','Mt. Lebanon','Sewickley','Oakland','Lawrenceville','South Side','Cranberry Twp','Monroeville','Other Pittsburgh area'].map(n =>
+            `<option value="${n}" ${state.neighborhood===n?'selected':''}>${n}</option>`).join('')}
+        </select>
+      </div>
+      <div class="nav-row">
+        <button class="btn-back" onclick="goBack()">
+          <svg viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Back
+        </button>
+        <button class="btn-next" id="btn-next2" onclick="saveStep2();goNext()">
+          Continue
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>`;
+}
+
+function renderStep3() {
+  calcEstimate();
+  const showAddons = state.service === 'local-move' || state.service === 'junk-removal';
+  return `
+    <div class="step-header">
+      <span class="step-num">Step 3 of 4</span>
+      <div class="step-dots">
+        <div class="dot done"></div><div class="dot done"></div><div class="dot active"></div><div class="dot"></div>
+      </div>
+    </div>
+    <div class="step-body">
+      <div class="step-title">Your instant estimate</div>
+      <div class="step-sub">Based on what you've told us. Final price confirmed on walkthrough.</div>
+      <div class="estimate-preview" id="est-preview"></div>
+      ${showAddons ? `
+        <div class="step-sub" style="margin-bottom:0.75rem">Add any extras?</div>
+        <div class="addon-list">
+          ${addons.map(a => `
+            <button class="addon-btn ${state.addons.includes(a.id) ? 'selected' : ''}" data-id="${a.id}" onclick="toggleAddon('${a.id}')">
+              <div class="addon-left">
+                <div class="check-box">
+                  <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <div>
+                  <div class="addon-name">${a.name}</div>
+                  <div class="addon-desc">${a.desc}</div>
+                </div>
+              </div>
+              <div class="addon-price">${a.price}</div>
+            </button>`).join('')}
+        </div>` : ''}
+      <div class="nav-row" style="margin-top:1.25rem">
+        <button class="btn-back" onclick="goBack()">
+          <svg viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Back
+        </button>
+        <button class="btn-next" onclick="goNext()">
+          Book this estimate
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>`;
+}
+
+function renderStep4() {
+  return `
+    <div class="step-header">
+      <span class="step-num">Step 4 of 4</span>
+      <div class="step-dots">
+        <div class="dot done"></div><div class="dot done"></div><div class="dot done"></div><div class="dot active"></div>
+      </div>
+    </div>
+    <div class="step-body">
+      <div class="step-title">Almost there — your info</div>
+      <div class="step-sub">We'll reach out within the hour to confirm your booking.</div>
+      <div class="field-group">
+        <label class="field-label">Your name</label>
+        <input class="field-input" type="text" id="name" placeholder="First and last name" value="${state.name}">
+      </div>
+      <div class="two-col">
+        <div class="field-group">
+          <label class="field-label">Phone number</label>
+          <input class="field-input" type="tel" id="phone" placeholder="(412) 555-0100" value="${state.phone}">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Email</label>
+          <input class="field-input" type="email" id="email" placeholder="you@email.com" value="${state.email}">
+        </div>
+      </div>
+      <div id="form-error" class="error-msg">Please fill in your name and phone number.</div>
+      <div class="divider"></div>
+      <div class="estimate-preview" style="margin-bottom:1rem">
+        <div class="est-row"><span>Service</span><span>${services.find(s=>s.id===state.service)?.name||''}</span></div>
+        <div class="est-row"><span>Date</span><span>${state.moveDate||'Flexible'}</span></div>
+        <div class="est-row"><span>Area</span><span>${state.neighborhood||'Pittsburgh'}</span></div>
+        <div class="est-row total"><span>Your estimate</span><span>$${state.estimate.low}–$${state.estimate.high}</span></div>
+      </div>
+      <div class="nav-row">
+        <button class="btn-back" onclick="goBack()">
+          <svg viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Back
+        </button>
+        <button class="btn-next" id="btn-submit" onclick="submitForm()">
+          Send my quote request
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>`;
+}
+
+function renderStep5() {
+  const { low, high } = state.estimate;
+  return `
+    <div class="step-body">
+      <div class="success-wrap">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="success-title">You're all set, ${state.name.split(' ')[0]}.</div>
+        <div class="success-sub">Your quote request is in. Siah will reach out within the hour to confirm your booking and answer any questions.</div>
+        <div class="quote-summary">
+          <div class="qs-label">Your quote summary</div>
+          <div class="qs-row"><span>Service</span><span>${services.find(s=>s.id===state.service)?.name||''}</span></div>
+          ${state.homeSize ? `<div class="qs-row"><span>Home size</span><span>${state.homeSize.toUpperCase()}</span></div>` : ''}
+          ${state.withTruck !== null ? `<div class="qs-row"><span>Truck</span><span>${state.withTruck ? 'Included' : 'Labor only'}</span></div>` : ''}
+          <div class="qs-row"><span>Date</span><span>${state.moveDate||'Flexible'}</span></div>
+          <div class="qs-row"><span>Neighborhood</span><span>${state.neighborhood||'Pittsburgh'}</span></div>
+          ${state.addons.length > 0 ? `<div class="qs-row"><span>Add-ons</span><span>${state.addons.length} selected</span></div>` : ''}
+          <div class="qs-total"><span>Estimate range</span><span>$${low}–$${high}</span></div>
+        </div>
+        <div class="what-next">
+          <div class="next-item"><div class="next-num">1</div>Siah calls or texts to confirm details and lock in your date</div>
+          <div class="next-item"><div class="next-num">2</div>A $150 deposit secures your spot on the schedule</div>
+          <div class="next-item"><div class="next-num">3</div>Your professional Next Step crew shows up ready to work</div>
+        </div>
+        <button class="btn-primary" onclick="window.open('tel:+14126362593')">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.69A2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Call us directly
+        </button>
+        <button class="btn-secondary" onclick="resetForm()">Start a new quote</button>
+      </div>
+    </div>`;
+}
+
+function bindEvents() {
+  document.querySelectorAll('.svc-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.service = btn.dataset.svc;
+      state.homeSize = '';
+      state.addons = [];
+      document.querySelectorAll('.svc-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      const next = document.getElementById('btn-next1');
+      if (next) next.disabled = false;
+    });
+  });
+
+  document.querySelectorAll('.size-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      state.homeSize = btn.dataset.size;
+      document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      calcEstimate();
+    });
+  });
+
+  if (state.step === 3) renderEstPreview();
+}
+
+function saveStep2() {
+  const date = document.getElementById('move-date');
+  const hood = document.getElementById('neighborhood');
+  const dist = document.getElementById('distance');
+  const desc = document.getElementById('job-desc');
+  if (date) state.moveDate = date.value;
+  if (hood) state.neighborhood = hood.value;
+  if (dist) state.distance = dist.value;
+  if (desc) state.jobDesc = desc.value;
+  calcEstimate();
+}
+
+function goNext() {
+  if (state.step === 1 && !state.service) return;
+  state.step++;
+  renderStep();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function goBack() {
+  state.step--;
+  renderStep();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function submitForm() {
+  const name = document.getElementById('name')?.value.trim();
+  const phone = document.getElementById('phone')?.value.trim();
+  const email = document.getElementById('email')?.value.trim();
+  const err = document.getElementById('form-error');
+
+  if (!name || !phone) {
+    if (err) { err.style.display = 'block'; err.textContent = 'Please fill in your name and phone number.'; }
+    return;
+  }
+
+  state.name = name;
+  state.phone = phone;
+  state.email = email;
+
+  const leadData = {
+    name: state.name,
+    phone: state.phone,
+    email: state.email,
+    service: services.find(s=>s.id===state.service)?.name || state.service,
+    handymanService: state.handymanService
+      ? (handymanServices.find(h=>h.id===state.handymanService)?.name || state.handymanService)
+      : '',
+    homeSize: state.homeSize,
+    withTruck: state.withTruck === true ? 'Yes' : state.withTruck === false ? 'No' : 'N/A',
+    moveDate: state.moveDate || 'Flexible',
+    neighborhood: state.neighborhood || 'Pittsburgh',
+    addons: state.addons.join(', ') || 'None',
+    estimateLow: state.estimate.low,
+    estimateHigh: state.estimate.high,
+    message: `NEW LEAD — ${state.name} | ${state.phone} | ${services.find(s=>s.id===state.service)?.name} | Est: $${state.estimate.low}–$${state.estimate.high} | ${state.neighborhood} | ${state.moveDate||'Flexible'}`,
+    submittedAt: new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })
+  };
+
+  // Send to Formspree — replace with your Formspree form ID
+  // Sign up free at formspree.io, create a form, copy the ID (e.g. xpwzgkdo)
+  fetch('https://formspree.io/f/xrergadq', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify(leadData)
+  }).then(r => {
+    if (!r.ok) console.warn('Formspree error — check your form ID');
+  }).catch(() => console.warn('Formspree offline — lead not sent'));
+
+  state.step = 5;
+  renderStep();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function renderEstPreviewInline() {
+  const el = document.getElementById('handyman-est');
+  if (!el || !state.handymanService) return;
+  calcEstimate();
+  const { low, high } = state.estimate;
+  el.innerHTML = `<div class="estimate-preview" style="margin-top:10px">
+    <div class="est-row total"><span>Estimated range</span><span>$${low}–$${high}</span></div>
+  </div>`;
+}
+
+function resetForm() {
+  Object.assign(state, {
+    step: 1, service: '', homeSize: '', floors: '1', distance: 'local',
+    withTruck: null, handymanService: '', moveDate: '', name: '',
+    phone: '', email: '', neighborhood: '', addons: [],
+    estimate: { low: 0, high: 0, breakdown: [] }
+  });
+  renderStep();
+}
+
+renderStep();
+</script>
+</body>
+</html>
